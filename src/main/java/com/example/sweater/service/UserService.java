@@ -22,6 +22,7 @@ public class UserService {
     }
 
     public User update(Long id, UserUpdateRequesModel userUpdateRequesModel) {
+
     User user=userRep.findById(id).orElseThrow(EntityNotFoundException::new);
     user.setTickets(userUpdateRequesModel.getTickets());
     user.setFio(userUpdateRequesModel.getFio());
@@ -29,5 +30,9 @@ public class UserService {
     user.setUser_password(userUpdateRequesModel.getUser_password());
     userRep.save(user);
     return user;
+    }
+
+    public void delete(Long id) {
+        userRep.deleteById(id);
     }
 }
