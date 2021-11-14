@@ -30,9 +30,9 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @PutMapping("/users/{id}")
+  /*  @PutMapping("/users/{id}")
     public User updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdateRequesModel userUpdateRequesModel){
         User user=userService.update(id,userUpdateRequesModel);
         return user;
-    }
+    }*/
 }
