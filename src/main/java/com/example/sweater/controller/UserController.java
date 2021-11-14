@@ -20,17 +20,17 @@ public class UserController {
     @Autowired
     UserRep userRep;
 
-    @PostMapping("/user/post")
+    @PostMapping("/user/new")
     public void createUser(@RequestBody User user){
         userService.save(user);
     }
 
-    @GetMapping("/user")
+    @GetMapping("/user/view")
     List<User> getUsers(){
         return userService.getUsers();
     }
 
-    @PutMapping("/user/{id}")
+    @PutMapping("/user/up/{id}")
     public User updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdateRequesModel userUpdateRequesModel){
         User user=userService.update(id,userUpdateRequesModel);
         return user;
