@@ -20,22 +20,22 @@ public class TicketsController {
     @Autowired
     TicketsRep ticketsRep;
 
-    @PostMapping("/tickets/new")
+    @PostMapping("/tickets")
     public void createTickets(@RequestBody Tickets_information tickets_information){ticketsService.save(tickets_information);
     }
 
-    @GetMapping("/tickets/view")
+    @GetMapping("/tickets")
     List<Tickets_information> getTickets(){
         return ticketsService.getTickets();
     }
 
-    @PutMapping("/tickets/up/{id}")
+    @PutMapping("/tickets/{id}")
     public Tickets_information updateTickets(@PathVariable Long id, @Valid @RequestBody TicketsUpdateRM ticketsUpdateRM){
         Tickets_information tickets_information=ticketsService.update(id,ticketsUpdateRM);
         return tickets_information;
     }
 
-    @DeleteMapping("/tickets/delete/{id}")
+    @DeleteMapping("/tickets/{id}")
     public void deleteTickets(@PathVariable Long id){
         ticketsService.delete(id);
     }

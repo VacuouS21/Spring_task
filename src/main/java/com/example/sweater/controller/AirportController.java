@@ -21,23 +21,23 @@ public class AirportController {
     @Autowired
     AirportRep airportRep;
 
-    @PostMapping("/airport/new")
+    @PostMapping("/airport")
     public void createAirport(@RequestBody Airport airport){
         airportService.save(airport);
     }
 
-    @GetMapping("/airport/view")
+    @GetMapping("/airport")
     List<Airport> getAirports(){
         return airportService.getAirports();
     }
 
-    @PutMapping("/airport/up/{id}")
+    @PutMapping("/airport/{id}")
     public Airport updateAirport(@PathVariable Long id, @Valid @RequestBody AirportUpdateRM airportUpdateRM){
         Airport airport=airportService.update(id,airportUpdateRM);
         return airport;
     }
 
-    @DeleteMapping("/airport/delete/{id}")
+    @DeleteMapping("/airport/{id}")
     public void deleteAirport(@PathVariable Long id){
         airportService.delete(id);
     }
