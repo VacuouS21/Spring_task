@@ -4,7 +4,9 @@ import com.example.sweater.Models.UserCriteriaRep;
 import com.example.sweater.Models.UserPage;
 import com.example.sweater.Models.UserSearchCriteria;
 import com.example.sweater.Models.UserUpdateRequesModel;
+import com.example.sweater.entity.Tickets_information;
 import com.example.sweater.entity.User;
+import com.example.sweater.repos.TicketsRep;
 import com.example.sweater.repos.UserRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,10 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     UserRep userRep;
+
+    @Autowired
+    TicketsRep ticketsRep;
+
     @Autowired
     private UserCriteriaRep userCriteriaRep;
 
@@ -25,15 +31,15 @@ public class UserService {
        User newUser= userRep.save(user);
        return newUser;
     }
-    public List<User> getUsers(){
+/*    public List<User> getUsers(){
 
         return userRep.findAll();
-    }
+    }*/
 
     public User update(Long id, UserUpdateRequesModel userUpdateRequesModel) {
 
     User user=userRep.findById(id).orElseThrow(EntityNotFoundException::new);
-    user.setTickets(userUpdateRequesModel.getTickets());
+    //user.setTickets(userUpdateRequesModel.getTickets());
     user.setFio(userUpdateRequesModel.getFio());
     user.setUser_login(userUpdateRequesModel.getUser_login());
     user.setUser_password(userUpdateRequesModel.getUser_password());
@@ -53,5 +59,11 @@ public class UserService {
 
     public List<User> getUsers(UserPage userPage, UserSearchCriteria userSearchCriteria){
         return userCriteriaRep.FindAllWithFilters(userPage,userSearchCriteria);
+    }
+
+    public Tickets_information getTicket(Long id){
+        User user= userRep.findById(id).orElse(null);
+        //return ticketsRep.findById(user.getTickets()).orElse(null);
+        return ticketsRep.findById(id).orElse(null);
     }
 }

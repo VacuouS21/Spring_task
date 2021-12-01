@@ -3,6 +3,7 @@ package com.example.sweater.controller;
 import com.example.sweater.Models.UserPage;
 import com.example.sweater.Models.UserSearchCriteria;
 import com.example.sweater.Models.UserUpdateRequesModel;
+import com.example.sweater.entity.Tickets_information;
 import com.example.sweater.entity.User;
 import com.example.sweater.repos.UserRep;
 import com.example.sweater.service.UserService;
@@ -35,10 +36,12 @@ public class UserController {
                                                UserSearchCriteria userSearchCriteria){
         return userService.getUsers(userPage,userSearchCriteria);
     }
-   /* List<User> getUsers(){
+  /* *//* List<User> getUsers(){
         return userService.getUsers();
 
     }*/
+
+
     @GetMapping("/user/{id}")
     User getUserFromId(@PathVariable Long id){
         return userService.getUserFromId(id);

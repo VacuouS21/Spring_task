@@ -2,6 +2,7 @@ package com.example.sweater.controller;
 
 import com.example.sweater.Models.TicketsUpdateRM;
 import com.example.sweater.entity.Tickets_information;
+import com.example.sweater.entity.User;
 import com.example.sweater.repos.TicketsRep;
 import com.example.sweater.service.TicketsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class TicketsController {
     @GetMapping("/tickets")
     List<Tickets_information> getTickets(){
         return ticketsService.getTickets();
+    }
+
+    @GetMapping("/tickets/{id}")
+    Tickets_information getTicketsFromId(@PathVariable Long id){
+        return ticketsService.getTicketFromId(id);
     }
 
     @PutMapping("/tickets/{id}")

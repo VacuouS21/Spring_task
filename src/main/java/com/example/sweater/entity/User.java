@@ -1,12 +1,19 @@
 package com.example.sweater.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Data
-@Table(name="User", schema="public")
+@Getter
+@Setter
+@Table(name="users", schema="public")
 public class User {
 
     @Id
@@ -24,4 +31,9 @@ public class User {
 
     @Column(name="user_password")
     private String user_password;
+
+
+
+   // private Tickets_information;
+
 }

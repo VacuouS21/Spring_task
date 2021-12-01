@@ -23,18 +23,26 @@ import java.util.List;
             return ticketsRep.findAll();
         }
 
+        public Tickets_information getTicketFromId(Long id){
+            return ticketsRep.findById(id).orElse(null);
+        }
+
         public Tickets_information update(Long id, TicketsUpdateRM ticketsUpdateRM) {
 
             Tickets_information tickets_information = ticketsRep.findById(id).orElseThrow(EntityNotFoundException::new);
             tickets_information.setAirplane(ticketsUpdateRM.getAirplane());
             tickets_information.setData_flight(ticketsUpdateRM.getData_flight());
-            tickets_information.setFrom_air(ticketsUpdateRM.getFrom_air());
-            tickets_information.setWhere_air(ticketsUpdateRM.getWhere_air());
+            //tickets_information.setFrom_air(ticketsUpdateRM.getFrom_air());
+            //tickets_information.setWhere_air(ticketsUpdateRM.getWhere_air());
             tickets_information.setSeat_number(ticketsUpdateRM.getSeat_number());
             tickets_information.setPrice(ticketsUpdateRM.getPrice());
             ticketsRep.save(tickets_information);
             return tickets_information;
         }
+
+      /*  public User getTicketsFromId(Long id){
+            return userRep.findById(id).orElse(null);
+        }*/
 
         public void delete(Long id) {
             ticketsRep.deleteById(id);

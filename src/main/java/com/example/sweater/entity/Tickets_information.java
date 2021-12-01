@@ -1,14 +1,19 @@
 package com.example.sweater.entity;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.*;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 
-@Entity
+    @Entity
     @Data
+    @ToString(exclude = "users")
     @Table(name="tickets_Information", schema="public")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     public class Tickets_information {
 
         @Id
@@ -24,12 +29,27 @@ import java.util.Date;
         @Column(name = "seat_number")
         private Integer seat_number;
 
-        @Column(name="from_air")
-    private Long from_air;
 
-        @Column(name = "where_air")
-    private Long where_air;
+        @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+        //@JsonBackReference
+        @JoinColumn(name = "from_air",updatable = false,nullable = false)
+        private Airport airport;
+/*        @Column(name="from_air")
+    private Long from_air;*/
+
+        @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+        //@JsonBackReference
+        @JoinColumn(name = "where_air",updatable = false,nullable = false)
+        private Airport airportWhere;
+
+        /*@Column(name = "where_air")
+    private Long where_air;*/
 
         @Column(name="price")
         private Integer price;
+
+
+
+
+
     }

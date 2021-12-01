@@ -38,8 +38,8 @@ public class UserCriteriaRep {
         setOrder(userPage,criteriaQuery,userRoot);
 
         TypedQuery<User> typedQuery= entityManager.createQuery(criteriaQuery);
-        typedQuery.setFirstResult(userPage.getPageNumber()* userPage.getPageSize());
-        typedQuery.setMaxResults(userPage.getPageSize());
+        //typedQuery.setFirstResult(userPage.getPageNumber()* userPage.getPageSize());
+        //typedQuery.setMaxResults(userPage.getPageSize());
 
 
         return typedQuery.getResultList();// PageImpl<>(typedQuery.getResultList(),pageable,userCount);
