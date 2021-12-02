@@ -20,9 +20,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="tickets")
-    private Long tickets;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    //@JsonBackReference
+    @JoinColumn(name = "tickets",updatable = false,nullable = false)
+    private Tickets_information tickets;
 
+  /*  @Column(name="tickets")
+    private Long ticketsLong;*/
+    /*@Column(name="tickets")
+    private Long tickets;
+*/
     @Column(name="fio")
     private String fio;
 

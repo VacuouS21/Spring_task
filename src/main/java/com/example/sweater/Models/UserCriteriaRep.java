@@ -77,6 +77,8 @@ public class UserCriteriaRep {
             predicates.add(
                     criteriaBuilder.like(userRoot.get("user_login"),"%"+userSearchCriteria.getUserLogin()+"%")
             );
+
+
         }
         return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }

@@ -49,6 +49,9 @@ import java.util.Set;
         private Integer price;
 
 
+        @OneToMany(fetch = FetchType.EAGER, mappedBy = "tickets")
+        @JsonBackReference
+        private List<User> users;
 
 
 

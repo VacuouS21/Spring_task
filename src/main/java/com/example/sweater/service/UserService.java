@@ -22,9 +22,6 @@ public class UserService {
     UserRep userRep;
 
     @Autowired
-    TicketsRep ticketsRep;
-
-    @Autowired
     private UserCriteriaRep userCriteriaRep;
 
     public User save(User user){
@@ -61,9 +58,5 @@ public class UserService {
         return userCriteriaRep.FindAllWithFilters(userPage,userSearchCriteria);
     }
 
-    public Tickets_information getTicket(Long id){
-        User user= userRep.findById(id).orElse(null);
-        //return ticketsRep.findById(user.getTickets()).orElse(null);
-        return ticketsRep.findById(id).orElse(null);
-    }
+
 }

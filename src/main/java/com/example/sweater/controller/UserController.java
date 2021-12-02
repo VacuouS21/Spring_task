@@ -32,15 +32,9 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public List<User> getUsers(UserPage userPage,
-                                               UserSearchCriteria userSearchCriteria){
+    public List<User> getUsers(UserPage userPage,UserSearchCriteria userSearchCriteria){
         return userService.getUsers(userPage,userSearchCriteria);
     }
-  /* *//* List<User> getUsers(){
-        return userService.getUsers();
-
-    }*/
-
 
     @GetMapping("/user/{id}")
     User getUserFromId(@PathVariable Long id){
