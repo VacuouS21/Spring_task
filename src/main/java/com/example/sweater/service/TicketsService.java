@@ -30,7 +30,7 @@ import java.util.List;
         public Tickets_information update(Long id, TicketsUpdateRM ticketsUpdateRM) {
 
             Tickets_information tickets_information = ticketsRep.findById(id).orElseThrow(EntityNotFoundException::new);
-            tickets_information.setAirplane(ticketsUpdateRM.getAirplane());
+            //tickets_information.setAirplane(ticketsUpdateRM.getAirplane());
             tickets_information.setData_flight(ticketsUpdateRM.getData_flight());
             //tickets_information.setFrom_air(ticketsUpdateRM.getFrom_air());
             //tickets_information.setWhere_air(ticketsUpdateRM.getWhere_air());

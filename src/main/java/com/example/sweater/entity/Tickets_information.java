@@ -20,8 +20,10 @@ import java.util.Set;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        @Column(name="airplane")
-        private Long airplane;
+
+        @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+        @JoinColumn(name = "airplane",updatable = false,nullable = false)
+        private Airplane_info airplane;
 
         @Column(name="data_flight")
         private Date data_flight;
@@ -30,20 +32,13 @@ import java.util.Set;
         private Integer seat_number;
 
 
-        @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-        //@JsonBackReference
+        @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "from_air",updatable = false,nullable = false)
-        private Airport airport;
-/*        @Column(name="from_air")
-    private Long from_air;*/
+        private Airport airportFrom;
 
-        @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-        //@JsonBackReference
+        @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "where_air",updatable = false,nullable = false)
         private Airport airportWhere;
-
-        /*@Column(name = "where_air")
-    private Long where_air;*/
 
         @Column(name="price")
         private Integer price;

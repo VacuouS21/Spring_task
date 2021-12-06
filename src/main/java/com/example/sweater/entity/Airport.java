@@ -10,7 +10,6 @@ import java.util.List;
 @Entity
 @Data
 @Table(name="airport", schema="public")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Airport {
 
     @Id
@@ -20,12 +19,12 @@ public class Airport {
     @Column(name="city")
     private String city;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "airport")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "airportFrom")
     @JsonBackReference
-    private List<Tickets_information> tickets_informationList;
+    private List<Tickets_information> tickets_informationListFrom;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "airportWhere")
     @JsonBackReference
-    private List<Tickets_information> tickets_informationList2;
+    private List<Tickets_information> tickets_informationListWhere;
 
 }

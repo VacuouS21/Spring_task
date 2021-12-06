@@ -1,3 +1,4 @@
+
 package com.example.sweater.Models;
 
 
@@ -32,30 +33,17 @@ public class UserCriteriaRep {
 
     public List<User> FindAllWithFilters(UserPage userPage, UserSearchCriteria userSearchCriteria){
         CriteriaQuery<User> criteriaQuery= criteriaBuilder.createQuery(User.class);
+
         Root<User> userRoot=criteriaQuery.from(User.class);
         Predicate predicate = getPredicate(userSearchCriteria,userRoot);
         criteriaQuery.where(predicate);
         setOrder(userPage,criteriaQuery,userRoot);
 
         TypedQuery<User> typedQuery= entityManager.createQuery(criteriaQuery);
-        //typedQuery.setFirstResult(userPage.getPageNumber()* userPage.getPageSize());
-        //typedQuery.setMaxResults(userPage.getPageSize());
 
 
         return typedQuery.getResultList();// PageImpl<>(typedQuery.getResultList(),pageable,userCount);
     }
-
-/*    private long getUserCount(Predicate predicate) {
-        CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
-        Root<User> countRoot = countQuery.from(User.class);
-        countQuery.select(criteriaBuilder.count(countRoot)).where(predicate);
-        return entityManager.createQuery(countQuery).getSingleResult();
-    }
-
-    private Pageable getPageable(UserPage userPage) {
-        Sort sort=Sort.by(userPage.getSortDirection(),userPage.getSortBy());
-        return PageRequest.of(userPage.getPageNumber(),userPage.getPageSize(),sort);
-    }*/
 
     private void setOrder(UserPage userPage, CriteriaQuery<User> criteriaQuery, Root<User> userRoot) {
         if(userPage.getSortDirection().equals(Sort.Direction.ASC)){
@@ -77,9 +65,13 @@ public class UserCriteriaRep {
             predicates.add(
                     criteriaBuilder.like(userRoot.get("user_login"),"%"+userSearchCriteria.getUserLogin()+"%")
             );
-
-
         }
+        /*if(Objects.nonNull("expand")){
+            predicates.add(
+                    criteriaBuilder.notLike(userRoot.get("user_login"),"")
+            );
+            System.out.println("YES");
+        }*/
         return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }
 

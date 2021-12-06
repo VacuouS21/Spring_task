@@ -20,16 +20,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    //@JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tickets",updatable = false,nullable = false)
     private Tickets_information tickets;
 
-  /*  @Column(name="tickets")
-    private Long ticketsLong;*/
-    /*@Column(name="tickets")
-    private Long tickets;
-*/
     @Column(name="fio")
     private String fio;
 
@@ -38,9 +32,5 @@ public class User {
 
     @Column(name="user_password")
     private String user_password;
-
-
-
-   // private Tickets_information;
 
 }
