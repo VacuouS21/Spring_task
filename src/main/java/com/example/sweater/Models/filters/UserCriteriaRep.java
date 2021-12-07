@@ -1,9 +1,9 @@
 
-package com.example.sweater.Models;
+package com.example.sweater.Models.filters;
 
 
 import com.example.sweater.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.sun.xml.bind.v2.TODO;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Repository;
 
@@ -37,7 +37,7 @@ public class UserCriteriaRep {
         Root<User> userRoot=criteriaQuery.from(User.class);
         Predicate predicate = getPredicate(userSearchCriteria,userRoot);
         criteriaQuery.where(predicate);
-        setOrder(userPage,criteriaQuery,userRoot);
+        //TODO setOrder(userPage,criteriaQuery,userRoot);
 
         TypedQuery<User> typedQuery= entityManager.createQuery(criteriaQuery);
 

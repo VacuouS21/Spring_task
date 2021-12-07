@@ -1,5 +1,7 @@
 package com.example.sweater.Models;
 
+import com.example.sweater.entity.Tickets_information;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Data

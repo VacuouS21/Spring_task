@@ -3,6 +3,7 @@ package com.example.sweater.controller;
 
 import com.example.sweater.Models.AirportUpdateRM;
 import com.example.sweater.entity.Airport;
+import com.example.sweater.entity.Tickets_information;
 import com.example.sweater.repos.AirportRep;
 import com.example.sweater.service.AirportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,20 @@ public class AirportController {
     AirportRep airportRep;
 
     @PostMapping("/airport")
-    public void createAirport(@RequestBody Airport airport){
-        airportService.save(airport);
+    public Airport createAirport(@RequestBody Airport airport){
+        airport.setTickets_informationListWhere(null);
+        airport.setTickets_informationListFrom(null);
+        return airportService.save(airport);
     }
 
     @GetMapping("/airport")
-    List<Airport> getAirports(){
+    List getAirports(@RequestParam(required = false) Object expand){
         return airportService.getAirports();
+    }
+
+    @GetMapping("/airport/{id}")
+    Object getTicketsFromId(@PathVariable Long id){
+        return airportService.getAirportFromId(id);
     }
 
     @PutMapping("/airport/{id}")
@@ -38,7 +46,7 @@ public class AirportController {
     }
 
     @DeleteMapping("/airport/{id}")
-    public void deleteAirport(@PathVariable Long id){
-        airportService.delete(id);
+    public Airport deleteAirport(@PathVariable Long id, @RequestParam(required = false) Object expand){
+        return airportService.delete(id);
     }
 }

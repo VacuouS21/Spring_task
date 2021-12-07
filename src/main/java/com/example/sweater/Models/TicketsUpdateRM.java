@@ -9,7 +9,7 @@ public class TicketsUpdateRM {
     Long airplane;
     Date data_flight;
     Integer seat_number;
-    Long from_air;
-    Long where_air;
+    Long airportFrom;
+    Long airportWhere;
     Integer price;
 }

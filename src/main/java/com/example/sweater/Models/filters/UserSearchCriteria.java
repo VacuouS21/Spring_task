@@ -1,4 +1,4 @@
-package com.example.sweater.Models;
+package com.example.sweater.Models.filters;
 
 import lombok.Data;
 import lombok.Getter;

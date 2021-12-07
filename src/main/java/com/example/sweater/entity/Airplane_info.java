@@ -1,6 +1,9 @@
 package com.example.sweater.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,6 +13,7 @@ import java.util.List;
 @Entity
     @Data
     @Table(name="airplane_info", schema="public")
+   @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     public class Airplane_info {
 
         @Id
@@ -22,7 +26,7 @@ import java.util.List;
         @Column(name="seats_count")
         private Integer seats_count;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "airplane")
-    @JsonBackReference
+        @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "airplane",cascade = CascadeType.ALL)
     private List<Tickets_information> tickets_informationList;
 }

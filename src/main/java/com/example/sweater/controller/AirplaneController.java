@@ -26,6 +26,7 @@ public class AirplaneController {
 
     @PostMapping("/airplane")
     public void createAirplane(@RequestBody Airplane_info airplane_info){
+        airplane_info.setTickets_informationList(null);
         airplaneService.save(airplane_info);
     }
 
@@ -34,6 +35,10 @@ public class AirplaneController {
         return airplaneService.getairplane_infos();
     }
 
+    @GetMapping("/airplane/{id}")
+    Object getTicketsFromId(@PathVariable Long id){
+        return airplaneService.getAirplaneFromId(id);
+    }
     @PutMapping("/airplane/{id}")
     public Airplane_info updateAirplane(@PathVariable Long id, @Valid @RequestBody AirplaneUpdateRM airplaneUpdateRM){
         Airplane_info airplane_info=airplaneService.update(id,airplaneUpdateRM);
@@ -41,7 +46,7 @@ public class AirplaneController {
     }
 
     @DeleteMapping("/airplane/{id}")
-    public void deleteAirplane(@PathVariable Long id){
-        airplaneService.delete(id);
+    public Airplane_info deleteAirplane(@PathVariable Long id){
+        return airplaneService.delete(id);
     }
 }

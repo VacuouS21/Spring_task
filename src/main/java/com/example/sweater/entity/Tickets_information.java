@@ -10,7 +10,8 @@ import java.util.Set;
 
 
     @Entity
-    @Data
+    @Getter
+    @Setter
     @ToString(exclude = "users")
     @Table(name="tickets_Information", schema="public")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -21,8 +22,8 @@ import java.util.Set;
         private Long id;
 
 
-        @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-        @JoinColumn(name = "airplane",updatable = false,nullable = false)
+        @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+        @JoinColumn(name = "airplane")
         private Airplane_info airplane;
 
         @Column(name="data_flight")
@@ -32,21 +33,36 @@ import java.util.Set;
         private Integer seat_number;
 
 
-        @ManyToOne(fetch = FetchType.EAGER)
-        @JoinColumn(name = "from_air",updatable = false,nullable = false)
+        @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+        @JoinColumn(name = "from_air")
         private Airport airportFrom;
 
-        @ManyToOne(fetch = FetchType.EAGER)
-        @JoinColumn(name = "where_air",updatable = false,nullable = false)
+        @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+        @JoinColumn(name = "where_air")
         private Airport airportWhere;
 
         @Column(name="price")
         private Integer price;
 
-
-        @OneToMany(fetch = FetchType.EAGER, mappedBy = "tickets")
-        @JsonBackReference
+        @JsonIgnore
+        @OneToMany(fetch = FetchType.EAGER, mappedBy = "tickets",cascade = CascadeType.ALL)
         private List<User> users;
+
+        public void updateAirplane(Airplane_info airplanes) {
+            airplane.getTickets_informationList().remove(this);
+            airplanes.getTickets_informationList().add(this);
+            this.airplane=airplanes;
+        }
+        public void updateAirportFrom(Airport airport) {
+            airportFrom.getTickets_informationListFrom().remove(this);
+            airport.getTickets_informationListFrom().add(this);
+            this.airportFrom=airport;
+        }
+        public void updateAirportWhere(Airport airport) {
+            airportWhere.getTickets_informationListFrom().remove(this);
+            airport.getTickets_informationListFrom().add(this);
+            this.airportWhere=airport;
+        }
 
 
 
