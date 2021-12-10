@@ -21,11 +21,11 @@ public class Airport {
     private String city;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "airportFrom",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true,mappedBy = "airportFrom")
     private List<Tickets_information> tickets_informationListFrom;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "airportWhere",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true,mappedBy = "airportWhere")
     private List<Tickets_information> tickets_informationListWhere;
 
 }

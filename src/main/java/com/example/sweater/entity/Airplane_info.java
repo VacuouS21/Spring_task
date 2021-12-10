@@ -27,6 +27,6 @@ import java.util.List;
         private Integer seats_count;
 
         @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "airplane",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, mappedBy = "airplane")
     private List<Tickets_information> tickets_informationList;
 }

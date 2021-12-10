@@ -22,7 +22,7 @@ import java.util.Set;
         private Long id;
 
 
-        @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+        @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "airplane")
         private Airplane_info airplane;
 
@@ -33,11 +33,11 @@ import java.util.Set;
         private Integer seat_number;
 
 
-        @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+        @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "from_air")
         private Airport airportFrom;
 
-        @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+        @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "where_air")
         private Airport airportWhere;
 
@@ -45,7 +45,7 @@ import java.util.Set;
         private Integer price;
 
         @JsonIgnore
-        @OneToMany(fetch = FetchType.EAGER, mappedBy = "tickets",cascade = CascadeType.ALL)
+        @OneToMany(fetch = FetchType.EAGER, mappedBy = "tickets", orphanRemoval = true)
         private List<User> users;
 
         public void updateAirplane(Airplane_info airplanes) {
